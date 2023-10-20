@@ -180,30 +180,37 @@ public function citykomi_canaux_callback() {
       }
       return $response;
   }
-    public function citykomi_shortcode($atts) {
-        // Paramètres par défaut
-        $atts = shortcode_atts(array(
-            'request' => '',
-            'view' => 'simple',
-        ), $atts);
+  public function citykomi_shortcode($atts) {
+    // Paramètres par défaut
+    $atts = shortcode_atts(array(
+        'request' => '',
+        'view' => 'simple',
+    ), $atts);
 
-        // Récupérez les paramètres du shortcode
-        $route = $atts['request'];
-        $view = $atts['view'];
+    // Récupérez les paramètres du shortcode
+    $route = $atts['request'];
+    $view = $atts['view'];
 
-        // Effectuez la requête CityKomi avec les paramètres fournis
-        $response = json_decode($this->sendRequest($route),true);
+    // Effectuez la requête CityKomi avec les paramètres fournis
+    $response = json_decode($this->sendRequest($route), true);
 
-        // Traitez la réponse en fonction du paramètre "view"
-        if (is_file(__DIR__ . '/view/' . $view . '.php')) {
-        include_once(__DIR__ . '/view/' . $view . '.php');
+    // Traitez la réponse en fonction du paramètre "view"
+    $view_file = __DIR__ . '/view/' . $view . '.php';
+    
+    if (is_file($view_file)) {
+        ob_start(); // Démarrez la temporisation de la sortie
+        include($view_file);
+        $output = ob_get_clean(); // Récupérez la sortie tamponnée
     } else {
         // Traitez la réponse de manière différente selon d'autres vues
-        include_once(__DIR__ . '/view/default.php');
+        ob_start();
+        include(__DIR__ . '/view/default.php');
+        $output = ob_get_clean();
     }
 
-        return ;
-    }
+    return $output; // Renvoyer le contenu généré par la vue
+}
+
     public static function transformeEnParagraphes($texte) {
         // Divise le texte en lignes en utilisant "\n" comme séparateur
         $lignes = explode("\n", $texte);
