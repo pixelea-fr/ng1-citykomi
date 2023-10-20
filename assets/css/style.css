@@ -1,0 +1,23 @@
+.citykomi-card {
+  margin: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 30px;
+  width: 33%;
+  padding: 20px;
+}
+.citykomi-card__items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.citykomi-card__img {
+  width: 100px;
+}
+.citykomi-card__title {
+  font-size: 16px;
+}
+
+.citykomi-filter__items {
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
