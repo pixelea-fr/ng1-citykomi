@@ -1,5 +1,4 @@
 .citykomi-card {
-  margin: 20px;
   border: 1px solid lightgrey;
   border-radius: 30px;
   width: 33%;
@@ -14,6 +13,7 @@
 }
 .citykomi-card__title {
   font-size: 16px;
+  background: lightgrey;
 }
 
 .citykomi-filter__items {

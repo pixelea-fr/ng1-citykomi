@@ -4,6 +4,6 @@
  <?php foreach ($events as $event):
      extract($event["content"]);
  ?>
- <?php include 'card.php'; ?>        
+ <?php include 'card.php'; ?>
  <?php endforeach; ?>
  </div>

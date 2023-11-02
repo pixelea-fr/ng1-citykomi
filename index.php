@@ -26,7 +26,7 @@ class CityKomiPlugin {
   }
   public function load_styles() {
     $plugin_url = plugins_url('', __FILE__);
-    wp_enqueue_style('citykomi',$plugin_url . '/assets/css/style.css', array(), null, 'all');
+    wp_enqueue_style('citykomi',$plugin_url . '/style.css', array(), null, 'all');
 
 }   
   public function add_admin_page() {
@@ -113,9 +113,7 @@ public function citykomi_enable_cache_callback() {
 public function citykomi_canaux_callback() {
     $value = get_option('citykomi_canaux');
     $canaux = json_decode($this->sendRequest('/v1/public/partners/channels/179?generate_qrcode=false'), true);
-    
     echo "<select id='citykomi_canaux' name='citykomi_canaux[]' multiple>";
-
     if (array_key_exists('data', $canaux) && !empty($canaux['data'])) {
         foreach ($canaux['data'] as $item) {
             $name = $item['name'];
@@ -128,7 +126,6 @@ public function citykomi_canaux_callback() {
             }
         }
     }
-
     echo "</select>";
 }
 
@@ -242,6 +239,19 @@ public function citykomi_canaux_callback() {
         $text = preg_replace('/-+/', '-', $text);
         
         return $text;
+    }
+   public static function linkifyHTML($html) {
+        // Expression régulière pour détecter les URL
+        $url_pattern = '/(https?:\/\/\S+)|www\.\S+/i';
+        $email_pattern = '/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/';
+    
+        // Remplace les URL par des liens
+        $html = preg_replace($url_pattern, '<a href="$0" target="_blank">$0</a>', $html);
+        
+        // Remplace les adresses e-mail par des liens "mailto:"
+        $html = preg_replace($email_pattern, '<a href="mailto:$0">$0</a>', $html);
+    
+        return $html;
     }
 }
 $cityKomi = new CityKomiPlugin();
