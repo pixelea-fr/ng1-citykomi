@@ -3,8 +3,8 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 3316 760" style="enable-background:new 0 0 3316 760;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#1EC4CE;}
+	.city-b{fill:var(--wp--preset--color--second);}
 </style>
-<path class="st0" d="M18.4,759.8H843v0.2h2473V0H843v0.2H154.6c-12.5,0-24.9,12.1-27.5,26.9L0.5,732.8
+<path class="city-b" d="M18.4,759.8H843v0.2h2473V0H843v0.2H154.6c-12.5,0-24.9,12.1-27.5,26.9L0.5,732.8
 	C-2.2,747.7,5.8,759.8,18.4,759.8z"/>
 </svg>

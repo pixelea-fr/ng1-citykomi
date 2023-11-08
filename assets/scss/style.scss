@@ -113,13 +113,14 @@
         cursor: pointer;
     
         &.active{
-            background: var(--wp--preset--color--fourth);
-            position: relative;
-            padding-left: 50px;
+            color:white;
+           //background: var(--wp--preset--color--fourth);
+           //position: relative;
+           //padding-left: 50px;
 
             &:before{
                 content:"";
-                background: var(--wp--preset--color--fourth);
+                background: var(--wp--preset--color--second);
                 width: 50vw;
                 position: absolute;
                 top: 0;
