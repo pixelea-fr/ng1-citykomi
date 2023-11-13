@@ -15,9 +15,10 @@ if (array_key_exists('data', $canaux) && !empty($canaux['data'])) {
     </div>
     <div class="citykomi-multicanal__gauche__content">
     <h1 class="is-style-h2"> Les profils sont classés en <br>
-<strong>9 domaines professionnels :</strong></h1>
+<strong>9 domaines professionnels</strong></h1>
 <p>Sélectionnez le domaine professionnel correspondant à votre besoin en utilisant les catégories ci-dessous :</p>
 <div class="citykomi-filter__items">
+   
 <?php
     foreach ($canaux['data'] as $item) {
         $name = $item['name'];
@@ -66,7 +67,7 @@ if (array_key_exists('data', $canaux) && !empty($canaux['data'])) {
     ?>
 
 
-<div class='citykomi-multicanal__droite'>
+<div id='filter-items-top'  class='citykomi-multicanal__droite'>
     <div class="citykomi-multicanal__bg">
         <?php echo file_get_contents(__DIR__.'/../assets/img/citycomi-fond-b.svg')?>    
     </div>
@@ -99,11 +100,24 @@ if (array_key_exists('data', $canaux) && !empty($canaux['data'])) {
 <script>
 
 (function ($) {
-    $(document).ready(function () {
+    $(window).load(function() {
+
+        function scrollToFilterItemsTop() {
+        $('html, body').animate({
+
+            scrollTop: $('#filter-items-top').offset().top
+        }, 600); // La durée du défilement en millisecondes
+    }
+    $('#filter-items-top').attr('data-top',$('#filter-items-top').offset().top);
         $(".citykomiFilterJs").click(function () {
             var cat = $(this).val();
             $('.citykomiGroupJs').removeClass('active');
             $('.citykomiGroupJs[data-canal="' + cat + '"]').addClass('active');
+            if ($(window).width() < 960) {
+                // Appeler la fonction de défilement
+                scrollToFilterItemsTop();
+            }
+            
         });
         // $(".citykomiFilterJs").click(function () {
         //     var dataId = $(this).data("id");

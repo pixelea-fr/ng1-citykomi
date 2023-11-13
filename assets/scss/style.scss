@@ -1,3 +1,5 @@
+@import 'mixins';
+
 :root{
     --citykomi-radius: 20px;
     --citykomi-card-padding: 20px;
@@ -119,14 +121,14 @@
            //padding-left: 50px;
 
             &:before{
-                content:"";
-                background: var(--wp--preset--color--second);
-                width: 50vw;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                transform:translateX(-100%);
+            //    content:"";
+            //    background: var(--wp--preset--color--second);
+            //    width: 50vw;
+            //    position: absolute;
+            //    top: 0;
+            //    bottom: 0;
+            //    left: 0;
+            //    transform:translateX(-100%);
             }
         }
         input{
@@ -143,7 +145,10 @@
     }
     &__bg{
         position: absolute;
-
+        @include m(960){
+            display: none;
+         
+        }
 
         
      svg{
@@ -158,8 +163,14 @@
 // background-size: 600px 500px;
         display: flex;
         position: relative;
-    padding-right: 100px;
-    margin-bottom: var( --citykomi-svg-right-top-decal);
+        @include p(960){
+            padding-right: 100px;
+        }
+        @include m(960){
+         background-color: var(--wp--preset--color--second);
+        }
+         margin-bottom: var( --citykomi-svg-right-top-decal);
+
         .citykomi-multicanal__bg{
           top: 0;
           right: 0;
@@ -170,6 +181,8 @@
             max-width: 550px;
             padding-top: 30px;
             z-index: 10;
+            padding-left: 2%;
+            padding-right: 2%;
             
             .citykomi-filter__items{
               margin-top: 45px;
